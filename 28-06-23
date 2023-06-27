@@ -1,0 +1,56 @@
+// Maximum Depth Of Binary Tree
+
+import java.util.*;
+// A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+
+class Solution {
+    private static int maxHeight(Node root) {
+        int leftCount = 1;
+        int rightCount = 1;
+        int count = 1;
+        if(root==null) return 0;
+        
+        leftCount = 1 + maxHeight(root.left);
+        // count = Math.max(count,currCount);
+        
+        rightCount = 1 + maxHeight(root.right);
+        count = Math.max(count,Math.max(leftCount,rightCount));
+        
+        return count;
+    }
+    
+    public static int maxDepth(Node root) {
+        int ans = maxHeight(root);
+        return ans;
+    }
+    
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(3);
+        root.right = new Node(2);
+        root.left.left = new Node(4);
+        root.left.left.right = new Node(6);
+        root.left.left.left = new Node(34);
+        root.left.left.left.right = new Node(14);
+        root.left.left.left.right.left = new Node(140);
+        root.left.left.left.right.right = new Node(142);
+        
+        int ans = maxDepth(root);
+        System.out.println(ans);
+    }
+}
+
+Topic Tags-
+Tree
+Data Structures
