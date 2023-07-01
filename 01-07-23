@@ -1,0 +1,17 @@
+// Number of 1 Bits
+
+class Solution {
+    static int setBits(int n) {
+        int count = 0;
+        while(n>0) {
+            int and = n&1;
+            if(and==1) count++;
+            n = n>>1;
+        }
+        return count;
+    }
+}
+
+Topic Tags-
+Bit Magic
+Data Structures
