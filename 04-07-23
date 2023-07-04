@@ -1,0 +1,63 @@
+// Count the subarrays having product less than k
+
+class Solution {
+    public int countSubArrayProductLessThanK(long a[], int n, long k) {
+        
+        int low = 0;
+        int high = 0;
+        long product = 1;
+        int count = 0;
+        
+        while(high<n) {
+            product *= a[high];
+            
+            if(product>=k) {
+                int curr = high-low;
+                count += (curr*(curr+1))/2;
+                while(low<=high && high<n && product>=k) {
+                    product /= a[low];
+                    low++;
+                }
+                int diff = high-low;
+                count -= (diff*(diff+1))/2;
+            }
+            high++;
+        }
+        int curr = high-low;
+        count += (curr*(curr+1))/2;
+        
+        return count;
+        
+        /*
+        long p = 1;
+        int res = 0;
+        for (int start = 0, end = 0; end < n; end++) {
+    
+            // Move right bound by 1 step. Update the product.
+            p *= a[end];
+    
+            // Move left bound so guarantee that p is again
+            // less than k.
+            while (start < end && p >= k) p /= a[start++];
+    
+            // If p is less than k, update the counter.
+            // Note that this is working even for (start == end):
+            // it means that the previous window cannot grow
+            // anymore and a single array element is the only
+            // addendum.
+            if (p < k) {
+                int len = end - start + 1;
+                res += len;
+            }
+        }
+    
+        return res;
+        */
+    }
+}
+
+Topic Tags-
+Arrays
+Mathematical
+Data Structures
+Algorithms
