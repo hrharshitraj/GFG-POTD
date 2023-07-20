@@ -1,0 +1,23 @@
+class Solution
+{
+    //Function to find the first non-repeating character in a string.
+    static char nonrepeatingCharacter(String str)
+    {
+        int n = str.length();
+        Map<Character, Integer> map = new HashMap();
+        for(int i=0; i<n; i++) {
+            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0)+1);
+        }
+        
+        for(int i=0; i<n; i++) {
+            int val = map.get(str.charAt(i));
+            if(val==1) return str.charAt(i);
+        }
+        return '$';
+    }
+}
+
+Topic Tags-
+Hash
+Strings
+Data Structures
